@@ -2739,3 +2739,18 @@ kill 1228
 kill 1228
 
 ```
+
+
+5. Journal système rsyslog
+
+
+* J'ai utilisé la commande **systemctl status rsyslog**
+
+![rayslog](./img/rayslog "rayslog")
+
+
+
+
+* Donc d'après les réponses que j'ai eu avec cette commande:
+    * Oui, le service rsyslog est lancé sur le système, comme indiqué par le statut **Active: active (running).**
+    * Le PID (Process ID) du démon rsyslog est 236 d'après mes résultats
