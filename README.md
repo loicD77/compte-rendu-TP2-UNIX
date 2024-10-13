@@ -2095,7 +2095,9 @@ COMMAND LINE OPTIONS
 
 
 
+* Pour mettre en avant la colonne de trie : 
 
+![surbrillance](./img/surbrillance.png "surbrillance")
 
 
 
