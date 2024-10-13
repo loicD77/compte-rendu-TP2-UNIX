@@ -2124,6 +2124,19 @@ Ses inconvénients peuvent être dû:
 * certaines fonctions avancées peuvent être moins visibles ou accessibles que dans top, qui expose ses fonctionnalités directement dans l'affichage en ligne de commande
 
 
+3. Exercice 2 : Arrêt d'un processus
+
+* Voici les deux scripts shells contenant des boucles affichant la date, dont **date.sh** et **date-toto.sh**:
+
+* date.sh :
+
+![date.sh](./img/date.sh.png "date.sh")
+
+* date-toto.sh :
+
+
+![date-toto.sh](./img/date-toto.sh.png "date-toto.sh")
+
 
 
 * Pour l'arrêt avec jobs et fg j'ai eu des difficultés :
