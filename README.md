@@ -621,7 +621,7 @@ root@LAPTOP-E9LS6Q7M:/mnt/c/Windows/System32#
 
 
 
-3. J'ai utilisé ** 
+3. J'ai utilisé **sudo apt update** :
 
 ```bash 
 root@LAPTOP-E9LS6Q7M:/mnt/c/Windows/System32# sudo apt update
