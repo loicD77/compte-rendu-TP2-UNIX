@@ -2090,7 +2090,7 @@ COMMAND LINE OPTIONS
 *  passer l’affichage en couleur: (Dans **top** j'ai appuyé sur **z minuscule**, c'est maintenant en rouge):
 
 
-
+![z-minuscule](./img/z-minuscule.png "z-minuscule")
 
 
 
