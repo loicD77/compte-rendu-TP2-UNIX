@@ -710,6 +710,90 @@ root@LAPTOP-E9LS6Q7M:/mnt/c/Windows/System32#
 
 Commande `pstree`
 
+```bash 
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# pstree -p $(pgrep -n ps)
+systemd(1)─┬─agetty(275)
+           ├─agetty(280)
+           ├─cron(1783)
+           ├─dbus-daemon(230)
+           ├─init-systemd(Ub(2)─┬─SessionLeader(438)───Relay(444)(439)───bash(444)───pstree(2140)
+           │                    ├─init(6)───{init}(7)
+           │                    ├─login(445)───bash(505)
+           │                    └─{init-systemd(Ub}(8)
+           ├─networkd-dispat(235)
+           ├─postgres(338)─┬─postgres(369)
+           │               ├─postgres(370)
+           │               ├─postgres(371)
+           │               ├─postgres(372)
+           │               ├─postgres(373)
+           │               └─postgres(374)
+           ├─rsyslogd(236)─┬─{rsyslogd}(246)
+           │               ├─{rsyslogd}(247)
+           │               └─{rsyslogd}(248)
+           ├─snapd(241)─┬─{snapd}(249)
+           │            ├─{snapd}(250)
+           │            ├─{snapd}(251)
+           │            ├─{snapd}(252)
+           │            ├─{snapd}(253)
+           │            ├─{snapd}(278)
+           │            ├─{snapd}(284)
+           │            ├─{snapd}(288)
+           │            ├─{snapd}(289)
+           │            ├─{snapd}(290)
+           │            ├─{snapd}(309)
+           │            ├─{snapd}(349)
+           │            ├─{snapd}(350)
+           │            ├─{snapd}(357)
+           │            ├─{snapd}(361)
+           │            ├─{snapd}(365)
+           │            ├─{snapd}(1563)
+           │            └─{snapd}(1944)
+           ├─snapfuse(102)─┬─{snapfuse}(105)
+           │               └─{snapfuse}(113)
+           ├─snapfuse(103)─┬─{snapfuse}(107)
+           │               └─{snapfuse}(109)
+           ├─snapfuse(104)─┬─{snapfuse}(108)
+           │               ├─{snapfuse}(110)
+           │               ├─{snapfuse}(340)
+           │               ├─{snapfuse}(341)
+           │               └─{snapfuse}(518)
+           ├─snapfuse(116)─┬─{snapfuse}(117)
+           │               └─{snapfuse}(119)
+           ├─snapfuse(123)─┬─{snapfuse}(125)
+           │               └─{snapfuse}(126)
+           ├─snapfuse(127)─┬─{snapfuse}(129)
+           │               ├─{snapfuse}(132)
+           │               ├─{snapfuse}(283)
+           │               └─{snapfuse}(549)
+           ├─snapfuse(133)─┬─{snapfuse}(134)
+           │               └─{snapfuse}(135)
+           ├─snapfuse(136)─┬─{snapfuse}(137)
+           │               ├─{snapfuse}(138)
+           │               ├─{snapfuse}(344)
+           │               └─{snapfuse}(345)
+           ├─sshd(281)
+           ├─subiquity-serve(262)───python3.10(323)─┬─{python3.10}(534)
+           │                                        ├─{python3.10}(536)
+           │                                        ├─{python3.10}(537)
+           │                                        └─{python3.10}(538)
+           ├─systemd(499)───(sd-pam)(500)
+           ├─systemd-journal(66)
+           ├─systemd-logind(242)
+           ├─systemd-resolve(145)
+           ├─systemd-timesyn(146)───{systemd-timesyn}(225)
+           ├─systemd-udevd(89)
+           └─unattended-upgr(311)───{unattended-upgr}(342)
+root@LAPTOP-E9LS6Q7M:~/scriptTP2#
+
+```
+* Ici on peut identifier les processus ancêtres suivants : 
+   * pstree(2140) : Le processus pstree est un enfant du processus bash(444).
+   * bash(444) : Le processus bash est un enfant de Relay(444).
+   * Relay(444) : Ce processus est un enfant de SessionLeader(438).
+   * SessionLeader(438) : Ce processus est un enfant de init-systemd(Ub(2)).
+   * init-systemd(Ub(2)) : Ce processus est un enfant de systemd(1).
+
+
  J'ai utilisé **sudo apt update** 
 
 ```bash 
