@@ -2100,7 +2100,15 @@ COMMAND LINE OPTIONS
 ![surbrillance](./img/surbrillance.png "surbrillance")
 
 
+* Comme son grand frère, htop permet d’afficher en temps réel les processus qui tournent sur un serveur Linux avec utilisation CPU et de la mémoire.
 
+## Avantages 
+
+* Tout d’abord, htop dispose d’une interface beaucoup plus design et colorée. On pourrait la décomposer est 3 parties :
+
+En haut on retrouve l’utilisation des ressources (CPU en pourcentage avec affichage d’une jauge, RAM et SWAP en Mo, etc.)
+Au milieu, sous forme de tableau, la liste des processus avec différentes informations (Pid, utilisateur, % mémoire et CPU, etc.)
+En bas, un menu présentant les raccourcis de tri, filtre, recherche de processus, pour tuer un processus ou encore modifier la priorité d’un processus.
 
 
 
