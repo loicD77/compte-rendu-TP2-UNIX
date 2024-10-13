@@ -8,6 +8,7 @@ DARRAS Loïc L3 PRO PROJET WEB ET MOBILE
 * Ici ce deuxième tp UNIX concene les services et les processus signaux.
 * J'ai tout d'abord effectué une connexion ssh root, une authentification par clef (une génération de clefs, une connexion serveur, depuis la machine hôte) avec des explications sur la cybersécurié avec les attaques de type brute-force ssh et des méthodes pour lutter contre ceci
 * Puis je me suis concentré sur les processus, sur l'arrèt de ces processus et enfin les tubes et le journal système rsyslog.
+* Ce compte rendu est le résultat de la fusion des données issues de ma machine en cours et de ma machine personnelle
 
 
 
@@ -440,6 +441,62 @@ root@LAPTOP-E9LS6Q7M:/mnt/c/Windows/System32# ps
 root@LAPTOP-E9LS6Q7M:/mnt/c/Windows/System32#
 ```
 
+* Voici le résultat avec les informations demandées :
+
+```bash 
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# ps -eo user,pid,%cpu,%mem,stat,start,time,command
+USER         PID %CPU %MEM STAT  STARTED     TIME COMMAND
+root           1  0.0  0.1 Ss   19:47:17 00:00:01 /sbin/init
+root           2  0.0  0.0 Sl   19:47:17 00:00:00 /init
+root           6  0.0  0.0 Sl   19:47:18 00:00:00 plan9 --control-socket 6 --log-level 4 --server-fd 7 --pipe-fd 9 --log-truncate
+root          66  0.0  0.1 S<s  19:47:18 00:00:00 /lib/systemd/systemd-journald
+root          89  0.0  0.0 Ss   19:47:19 00:00:01 /lib/systemd/systemd-udevd
+root         102  0.0  0.0 Ssl  19:47:19 00:00:00 snapfuse /var/lib/snapd/snaps/bare_5.snap /snap/bare/5 -o ro,nodev,allow_other,suid
+root         103  0.0  0.0 Ssl  19:47:19 00:00:00 snapfuse /var/lib/snapd/snaps/core22_1380.snap /snap/core22/1380 -o ro,nodev,allow_other,suid
+root         104  0.0  0.1 Ssl  19:47:19 00:00:01 snapfuse /var/lib/snapd/snaps/core22_1621.snap /snap/core22/1621 -o ro,nodev,allow_other,suid
+root         116  0.0  0.0 Ssl  19:47:19 00:00:00 snapfuse /var/lib/snapd/snaps/gtk-common-themes_1535.snap /snap/gtk-common-themes/1535 -o ro,nodev,allow_other,suid
+root         123  0.0  0.0 Ssl  19:47:19 00:00:00 snapfuse /var/lib/snapd/snaps/snapd_20290.snap /snap/snapd/20290 -o ro,nodev,allow_other,suid
+root         127  0.0  0.1 Ssl  19:47:19 00:00:00 snapfuse /var/lib/snapd/snaps/snapd_21759.snap /snap/snapd/21759 -o ro,nodev,allow_other,suid
+root         133  0.0  0.0 Ssl  19:47:19 00:00:00 snapfuse /var/lib/snapd/snaps/ubuntu-desktop-installer_1276.snap /snap/ubuntu-desktop-installer/1276 -o ro,nodev,allow_other,suid
+root         136  0.0  0.1 Ssl  19:47:19 00:00:02 snapfuse /var/lib/snapd/snaps/ubuntu-desktop-installer_1286.snap /snap/ubuntu-desktop-installer/1286 -o ro,nodev,allow_other,suid
+systemd+     145  0.0  0.1 Ss   19:47:19 00:00:00 /lib/systemd/systemd-resolved
+systemd+     146  0.0  0.0 Ssl  19:47:19 00:00:00 /lib/systemd/systemd-timesyncd
+message+     230  0.0  0.0 Ss   19:47:19 00:00:00 @dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+root         235  0.0  0.2 Ss   19:47:19 00:00:00 /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
+syslog       236  0.0  0.0 Ssl  19:47:19 00:00:00 /usr/sbin/rsyslogd -n -iNONE
+root         241  0.0  0.5 Ssl  19:47:19 00:00:02 /usr/lib/snapd/snapd
+root         242  0.0  0.0 Ss   19:47:19 00:00:00 /lib/systemd/systemd-logind
+root         262  0.0  0.0 Ss   19:47:19 00:00:00 /bin/bash /snap/ubuntu-desktop-installer/1286/bin/subiquity-server
+root         275  0.0  0.0 Ss+  19:47:19 00:00:00 /sbin/agetty -o -p -- \u --noclear --keep-baud console 115200,38400,9600 vt220
+root         280  0.0  0.0 Ss+  19:47:19 00:00:00 /sbin/agetty -o -p -- \u --noclear tty1 linux
+root         281  0.0  0.1 Ss   19:47:19 00:00:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+root         311  0.0  0.2 Ssl  19:47:19 00:00:00 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+root         323  0.0  1.1 Sl   19:47:19 00:00:06 /snap/ubuntu-desktop-installer/1286/usr/bin/python3.10 -m subiquity.cmd.server --use-os-prober --storage-version=2 --postinst-hooks-dir=/snap/ubuntu-desktop-installer/1286/etc/subiquity/p
+postgres     338  0.0  0.3 Ss   19:47:19 00:00:00 /usr/lib/postgresql/14/bin/postgres -D /var/lib/postgresql/14/main -c config_file=/etc/postgresql/14/main/postgresql.conf
+postgres     369  0.0  0.0 Ss   19:47:20 00:00:00 postgres: 14/main: checkpointer
+postgres     370  0.0  0.0 Ss   19:47:20 00:00:00 postgres: 14/main: background writer
+postgres     371  0.0  0.1 Ss   19:47:20 00:00:00 postgres: 14/main: walwriter
+postgres     372  0.0  0.1 Ss   19:47:20 00:00:00 postgres: 14/main: autovacuum launcher
+postgres     373  0.0  0.0 Ss   19:47:20 00:00:00 postgres: 14/main: stats collector
+postgres     374  0.0  0.0 Ss   19:47:20 00:00:00 postgres: 14/main: logical replication launcher
+root         438  0.0  0.0 Ss   19:47:23 00:00:00 /init
+root         439  0.0  0.0 S    19:47:23 00:00:00 /init
+root         444  0.0  0.0 Ss   19:47:23 00:00:00 -bash
+root         445  0.0  0.0 Ss   19:47:23 00:00:00 /bin/login -f
+root         499  0.0  0.1 Ss   19:47:24 00:00:00 /lib/systemd/systemd --user
+root         500  0.0  0.0 S    19:47:24 00:00:00 (sd-pam)
+root         505  0.0  0.0 S+   19:47:24 00:00:00 -bash
+root        1783  0.0  0.0 Ss   21:32:38 00:00:00 /usr/sbin/cron -f -P
+root        1873  0.0  0.0 R+   21:56:58 00:00:00 ps -eo user,pid,%cpu,%mem,stat,start,time,command
+root@LAPTOP-E9LS6Q7M:~/scriptTP2#
+```
+
+
+* Voici donc des processus de ma machine : 
+    * **/sbin/init (PID 1)** : Le processus d'initialisation du système. C'est le premier processus lancé par le noyau lors du démarrage.
+   * **systemd-journald (PID 66)** : Un service qui gère les journaux du système.
+   * **sshd (PID 281) :** Le serveur SSH qui permet les connexions à distance sécurisées.
+**postgres (PID 338) :** Le processus principal du serveur de base de données PostgreSQL.
 
 * Voici l'explication de l'information TIME :
 
@@ -621,7 +678,7 @@ root@LAPTOP-E9LS6Q7M:/mnt/c/Windows/System32#
 
 
 
-3. J'ai utilisé **sudo apt update** :
+3. J'ai utilisé ** 
 
 ```bash 
 root@LAPTOP-E9LS6Q7M:/mnt/c/Windows/System32# sudo apt update
@@ -2101,6 +2158,7 @@ COMMAND LINE OPTIONS
 
 
 * Comme son grand frère, htop permet d’afficher en temps réel les processus qui tournent sur un serveur Linux avec utilisation CPU et de la mémoire.
+
 ## Avantages 
 
 Source : https://www.cachem.fr/htop-top/
@@ -2118,11 +2176,14 @@ En bas, un menu présentant les raccourcis de tri, filtre, recherche de processu
 sudo apt-get install htop
 ```
 
+
+
+
+
 Ses inconvénients peuvent être dû:
 * à la consommation de mémoire
 * à son absence sur certaines distribution Linux
 * certaines fonctions avancées peuvent être moins visibles ou accessibles que dans top, qui expose ses fonctionnalités directement dans l'affichage en ligne de commande
-
 
 3. Exercice 2 : Arrêt d'un processus
 
@@ -2741,12 +2802,46 @@ kill 1228
 ```
 
 
+
+4. Exercice 3 : les tubes :
+
+
+
+* Quelle est la différence entre tea et cat ?
+
+
+   * cat : Commande utilisée principalement pour lire des fichiers et afficher leur contenu sur la sortie standard (surtout sur le terminal). On peut aussi l'utiliser pour afficher le contenu d'un fichier ou combiner plusieurs fichiers.
+   * tee : Commande qui permet de lire l'entrée standard et d'écrire à la fois sur la sortie standard (surtout aussi sur le terminal) et dans un ou plusieurs fichiers . Elle est souvent utilisée pour sauvegarder des données tout en les affichant en même temps
+   * cat est utilisé pour afficher le contenu des fichiers sur la sortie standard, tandis que tee permet de lire l'entrée standard et d'écrire simultanément sur la sortie standard et dans un ou plusieurs fichiers.
+  
+* $ ls | cat
+
+    * Ici on lit le contenu du répertoire actuel (ls), puis on utilise **cat** pour afficher ce contenu.
+
+* $ ls -l | cat > liste
+   
+    * Ici le contenu détaillé de la liste du répertoire est enregistré dans le fichier **liste**. Pas d'affichage sur le terminal, en effet la sortie de **cat** est redirigée ver le fichier
+
+
+* $ ls -l | tee liste
+
+   * Ici on voit la sortie sur le terminal et un fichier **liste** sera créé ou écrasé avec le même contenu 
+
+* ls -l | tee liste | wc -l
+
+    * On voit la sortie sur le terminal et le fichier **liste** sera créé avec le contenu de ls -l. 
+    * La commande wc -l affichera le nombre de lignes du résultat de **ls -l** sur le terminal.
+
+
+
+
 5. Journal système rsyslog
 
+## Le service rsyslog est-il lanc´e sur votre système ? Quel est le PID du démon ?
 
 * J'ai utilisé la commande **systemctl status rsyslog**
 
-![rayslog](./img/rayslog.png "rayslog")
+![rayslog](./img/rayslog "rayslog")
 
 
 
@@ -2754,3 +2849,629 @@ kill 1228
 * Donc d'après les réponses que j'ai eu avec cette commande:
     * Oui, le service rsyslog est lancé sur le système, comme indiqué par le statut **Active: active (running).**
     * Le PID (Process ID) du démon rsyslog est 236 d'après mes résultats
+
+
+### Le principal fichier de configuration de rsyslog est /etc/rsyslog.conf. Dans quel fichier rsyslog ´ecrit-il les messages issus des services standards ? Et la plupart des autres messages ? V´erifier le contenu de ces fichier   
+
+
+* Pour répondre à cette question j'ai utlisé les commandes suivantes :
+
+
+
+```bash 
+cat /var/log/syslog
+
+
+
+```
+
+* En effet syslog écrit généralement les messages des services standards dans /var/log/syslog ou /var/log/messages selon la configuration du système. La plupart des autres messages sont aussi enregistrés dans ces fichiers, mais des messages spécifiques peuvent être redirigés vers d'autres fichiers comme /var/log/auth.log pour les messages d'authentification.
+
+Voici le début du  résultat de **cat /var/log/syslog** :
+
+
+```bash 
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.372380] PCI: System does not support PCI
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.372195] hv_vmbus: Unknown GUID: c376c1c3-d276-48d2-90a9-c04748072c60
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.373216] clocksource: Switched to clocksource tsc-early
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.372967] hv_vmbus: Unknown GUID: 6e382d18-3336-4f4b-acc4-2b7703d4df4a
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.373017] hv_vmbus: Unknown GUID: dde9cbc0-5060-4436-9448-ea1254a5d177
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.421916] VFS: Disk quotas dquot_6.6.0
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.421961] VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.422013] FS-Cache: Loaded
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.422083] pnp: PnP ACPI init
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.422583] pnp: PnP ACPI: found 1 devices
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.438854] NET: Registered PF_INET protocol family
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.439947] IP idents hash table entries: 131072 (order: 8, 1048576 bytes, linear)
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.441174] tcp_listen_portaddr_hash hash table entries: 4096 (order: 4, 65536 bytes, linear)
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.441261] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.441276] TCP established hash table entries: 65536 (order: 7, 524288 bytes, linear)
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.441873] TCP bind hash table entries: 65536 (order: 8, 1048576 bytes, linear)
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.442973] TCP: Hash tables configured (established 65536 bind 65536)
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.443160] UDP hash table entries: 4096 (order: 5, 131072 bytes, linear)
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.443309] UDP-Lite hash table entries: 4096 (order: 5, 131072 bytes, linear)
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.443534] NET: Registered PF_UNIX/PF_LOCAL protocol family
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.445349] RPC: Registered named UNIX socket transport module.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.445355] RPC: Registered udp transport module.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.445359] RPC: Registered tcp transport module.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.445361] RPC: Registered tcp NFSv4.1 backchannel transport module.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.445368] PCI: CLS 0 bytes, default 64
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.445422] PCI-DMA: Using software bounce buffering for IO (SWIOTLB)
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.445427] software IO TLB: mapped [mem 0x00000000f4000000-0x00000000f8000000] (64MB)
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.445611] kvm: no hardware support
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.445824] Trying to unpack rootfs image as initramfs...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.448082] kvm: Nested Virtualization enabled
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.448088] SVM: kvm: Nested Paging enabled
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.448091] SVM: kvm: Hyper-V enlightened NPT TLB flush enabled
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.448094] SVM: kvm: Hyper-V Direct TLB Flush enabled
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.448215] SVM: Virtual VMLOAD VMSAVE supported
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.453722] Freeing initrd memory: 2208K
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.730206] Initialise system trusted keyrings
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.730780] workingset: timestamp_bits=46 max_order=21 bucket_order=0
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.734807] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.735765] NFS: Registering the id_resolver key type
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.735784] Key type id_resolver registered
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.735788] Key type id_legacy registered
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.735796] nfs4filelayout_init: NFSv4 File Layout Driver Registering...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.735805] nfs4flexfilelayout_init: NFSv4 Flexfile Layout Driver Registering...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.735809] Installing knfsd (copyright (C) 1996 okir@monad.swb.de).
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.739105] Key type cifs.idmap registered
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.739379] fuse: init (API version 7.34)
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.740001] SGI XFS with ACLs, security attributes, realtime, scrub, repair, quota, no debug enabled
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.741377] 9p: Installing v9fs 9p2000 file system support
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.741406] FS-Cache: Netfs '9p' registered for caching
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.741566] FS-Cache: Netfs 'ceph' registered for caching
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.741572] ceph: loaded (mds proto 32)
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.748283] NET: Registered PF_ALG protocol family
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.748293] xor: automatically using best checksumming function   avx
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.748300] Key type asymmetric registered
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.748304] Asymmetric key parser 'x509' registered
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.748481] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 248)
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.751370] hv_vmbus: registering driver hv_pci
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.752559] hv_pci c4b741f5-5582-4c98-8f8b-2e082933c396: PCI VMBus probing: Using version 0x10004
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.755629] hv_pci c4b741f5-5582-4c98-8f8b-2e082933c396: PCI host bridge to bus 5582:00
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.755637] pci_bus 5582:00: root bus resource [mem 0x9ffe00000-0x9ffe02fff window]
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.755672] pci_bus 5582:00: No busn resource found for root bus, will use [bus 00-ff]
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.758172] pci 5582:00:00.0: [1af4:1043] type 00 class 0x010000
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.762109] pci 5582:00:00.0: reg 0x10: [mem 0x9ffe00000-0x9ffe00fff 64bit]
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.763952] pci 5582:00:00.0: reg 0x18: [mem 0x9ffe01000-0x9ffe01fff 64bit]
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.765819] pci 5582:00:00.0: reg 0x20: [mem 0x9ffe02000-0x9ffe02fff 64bit]
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.775205] pci_bus 5582:00: busn_res: [bus 00-ff] end is updated to 00
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.775221] pci 5582:00:00.0: BAR 0: assigned [mem 0x9ffe00000-0x9ffe00fff 64bit]
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.776425] pci 5582:00:00.0: BAR 2: assigned [mem 0x9ffe01000-0x9ffe01fff 64bit]
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.777621] pci 5582:00:00.0: BAR 4: assigned [mem 0x9ffe02000-0x9ffe02fff 64bit]
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.780297] hv_pci 2b044257-f4f0-43bc-a6f0-cb3806b7e1e2: PCI VMBus probing: Using version 0x10004
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.782728] hv_pci 2b044257-f4f0-43bc-a6f0-cb3806b7e1e2: PCI host bridge to bus f4f0:00
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.782737] pci_bus f4f0:00: No busn resource found for root bus, will use [bus 00-ff]
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.783836] pci f4f0:00:00.0: [1414:008e] type 00 class 0x030200
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.796364] pci_bus f4f0:00: busn_res: [bus 00-ff] end is updated to 00
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.796855] ACPI: AC: AC Adapter [AC1] (off-line)
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.800196] ACPI: battery: Slot [BAT1] (battery present)
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.810035] Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.932892] Non-volatile memory driver v1.3
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.933645] [drm] Initialized vgem 1.0.0 20120112 for vgem on minor 0
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.936629] printk: console [hvc0] enabled
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.946528] brd: module loaded
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.951938] loop: module loaded
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.953046] hv_vmbus: registering driver hv_storvsc
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.954395] wireguard: WireGuard 1.0.0 loaded. See www.wireguard.com for information.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.955845] wireguard: Copyright (C) 2015-2019 Jason A. Donenfeld <Jason@zx2c4.com>. All Rights Reserved.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.957916] tun: Universal TUN/TAP device driver, 1.6
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.958850] scsi host0: storvsc_host_t
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.959153] PPP generic driver version 2.4.2
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.960902] PPP BSD Compression module registered
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.961713] PPP Deflate Compression module registered
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.962647] PPP MPPE Compression module registered
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.963526] NET: Registered PF_PPPOX protocol family
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.964508] usbcore: registered new interface driver cdc_ether
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.965824] usbcore: registered new interface driver cdc_ncm
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.966913] usbcore: registered new interface driver r8153_ecm
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.967976] hv_vmbus: registering driver hv_netvsc
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.969145] VFIO - User Level meta-driver version: 0.3
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.970740] usbcore: registered new interface driver cdc_acm
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.972044] cdc_acm: USB Abstract Control Model driver for USB modems and ISDN adapters
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.973722] vhci_hcd vhci_hcd.0: USB/IP Virtual Host Controller
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.974911] vhci_hcd vhci_hcd.0: new USB bus registered, assigned bus number 1
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.976214] vhci_hcd: created sysfs vhci_hcd.0
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.977777] usb usb1: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 5.15
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.979449] usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.980981] usb usb1: Product: USB/IP Virtual Host Controller
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.982095] usb usb1: Manufacturer: Linux 5.15.153.1-microsoft-standard-WSL2 vhci_hcd
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.983365] usb usb1: SerialNumber: vhci_hcd.0
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.984817] hub 1-0:1.0: USB hub found
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.985640] hub 1-0:1.0: 8 ports detected
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.987220] vhci_hcd vhci_hcd.0: USB/IP Virtual Host Controller
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.988662] vhci_hcd vhci_hcd.0: new USB bus registered, assigned bus number 2
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.990522] usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.992613] usb usb2: New USB device found, idVendor=1d6b, idProduct=0003, bcdDevice= 5.15
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.994366] usb usb2: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.995794] usb usb2: Product: USB/IP Virtual Host Controller
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.997022] usb usb2: Manufacturer: Linux 5.15.153.1-microsoft-standard-WSL2 vhci_hcd
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.998315] usb usb2: SerialNumber: vhci_hcd.0
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    0.999835] hub 2-0:1.0: USB hub found
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.000830] hub 2-0:1.0: 8 ports detected
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.002725] hv_vmbus: registering driver hyperv_keyboard
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.003620] rtc_cmos 00:00: RTC can wake from S4
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.009670] rtc_cmos 00:00: registered as rtc0
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.011836] rtc_cmos 00:00: setting system clock to 2024-10-11T07:36:47 UTC (1728632207)
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.013662] rtc_cmos 00:00: alarms up to one month, 114 bytes nvram
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.015542] device-mapper: ioctl: 4.45.0-ioctl (2021-03-22) initialised: dm-devel@redhat.com
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.017723] device-mapper: raid: Loading target version 1.15.1
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.019054] hid: raw HID events driver (C) Jiri Kosina
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.020127] usbcore: registered new interface driver usbhid
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.021152] usbhid: USB HID core driver
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.022150] hv_utils: Registering HyperV Utility Driver
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.023282] hv_vmbus: registering driver hv_utils
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.024157] hv_vmbus: registering driver hv_balloon
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.025343] hv_vmbus: registering driver dxgkrnl
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.025352] hv_utils: TimeSync IC version 4.0
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.028187] hv_balloon: Using Dynamic Memory protocol version 2.0
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.028225] drop_monitor: Initializing network drop monitor service
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.030966] Mirror/redirect action on
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.031871] Free page reporting enabled
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.031905] u32 classifier
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.032594] hv_balloon: Cold memory discard hint enabled with order 9
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.033104]     Performance counters on
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.035004]     input device check on
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.035674]     Actions configured
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.041207] IPVS: Registered protocols (TCP, UDP)
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.042619] IPVS: Connection hash table configured (size=4096, memory=32Kbytes)
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.044424] IPVS: ipvs loaded.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.045124] IPVS: [rr] scheduler registered.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.045905] IPVS: [wrr] scheduler registered.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.046688] IPVS: [sh] scheduler registered.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.047581] ipt_CLUSTERIP: ClusterIP Version 0.8 loaded successfully
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.048766] Initializing XFRM netlink socket
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.049931] NET: Registered PF_INET6 protocol family
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.052501] Segment Routing with IPv6
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.053320] In-situ OAM (IOAM) with IPv6
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.054115] NET: Registered PF_PACKET protocol family
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.055101] Bridge firewalling registered
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.055901] 8021q: 802.1Q VLAN Support v1.8
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.056582] sctp: Hash tables configured (bind 256/256)
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.057694] 9pnet: Installing 9P2000 support
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.058912] Key type dns_resolver registered
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.059833] Key type ceph registered
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.061017] libceph: loaded (mon/osd proto 15/24)
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.062227] NET: Registered PF_VSOCK protocol family
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.063239] hv_vmbus: registering driver hv_sock
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.064743] IPI shorthand broadcast: enabled
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.065764] sched_clock: Marking stable (1061510892, 669300)->(1101326400, -39146208)
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.069142] registered taskstats version 1
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.072528] Loading compiled-in X.509 certificates
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.079619] Btrfs loaded, crc32c=crc32c-generic, zoned=no, fsverity=no
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.084181] Freeing unused kernel image (initmem) memory: 2008K
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.085548] Write protecting the kernel read-only data: 30720k
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.088568] Freeing unused kernel image (text/rodata gap) memory: 2024K
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.090585] Freeing unused kernel image (rodata/data gap) memory: 592K
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.091853] Run /init as init process
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.092542]   with arguments:
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.093207]     /init
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.093751]   with environment:
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.094670]     HOME=/
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.095112]     TERM=linux
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.095508]     WSL_ROOT_INIT=1
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.096159]     WSL_ENABLE_CRASH_DUMP=1
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.106548] scsi 0:0:0:0: Direct-Access     Msft     Virtual Disk     1.0  PQ: 0 ANSI: 5
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.132745] sd 0:0:0:0: Attached scsi generic sg0 type 0
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.135674] sd 0:0:0:0: [sda] 795504 512-byte logical blocks: (407 MB/388 MiB)
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.135745] scsi 0:0:0:1: Direct-Access     Msft     Virtual Disk     1.0  PQ: 0 ANSI: 5
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.138507] sd 0:0:0:0: [sda] Write Protect is on
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.139602] sd 0:0:0:0: [sda] Mode Sense: 0f 00 80 00
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.141216] sd 0:0:0:0: [sda] Write cache: disabled, read cache: enabled, doesn't support DPO or FUA
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.151807] sd 0:0:0:0: [sda] Attached SCSI disk
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.161378] sd 0:0:0:1: Attached scsi generic sg1 type 0
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.164350] sd 0:0:0:1: [sdb] 4194312 512-byte logical blocks: (2.15 GB/2.00 GiB)
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.165955] sd 0:0:0:1: [sdb] 4096-byte physical blocks
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.167227] sd 0:0:0:1: [sdb] Write Protect is off
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.168256] sd 0:0:0:1: [sdb] Mode Sense: 0f 00 00 00
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.169990] sd 0:0:0:1: [sdb] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.181121] sd 0:0:0:1: [sdb] Attached SCSI disk
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.225731] EXT4-fs (sda): mounted filesystem without journal. Opts: (null). Quota mode: none.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.325669] Adding 2097152k swap on /dev/sdb.  Priority:-2 extents:1 across:2097152k
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.473923] IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.760816] clocksource: tsc: mask: 0xffffffffffffffff max_cycles: 0x19e5b377f4e, max_idle_ns: 440795245129 ns
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.766944] clocksource: Switched to clocksource tsc
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.956970] hv_pci 2713f25c-2fd9-45b9-8dbd-67dfd5867990: PCI VMBus probing: Using version 0x10004
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.963399] hv_pci 2713f25c-2fd9-45b9-8dbd-67dfd5867990: PCI host bridge to bus 2fd9:00
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.965031] pci_bus 2fd9:00: root bus resource [mem 0xc00000000-0xe00001fff window]
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.966242] pci_bus 2fd9:00: No busn resource found for root bus, will use [bus 00-ff]
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.970487] pci 2fd9:00:00.0: [1af4:105a] type 00 class 0x088000
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.978497] pci 2fd9:00:00.0: reg 0x10: [mem 0xe00000000-0xe00000fff 64bit]
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.984744] pci 2fd9:00:00.0: reg 0x18: [mem 0xe00001000-0xe00001fff 64bit]
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    1.990922] pci 2fd9:00:00.0: reg 0x20: [mem 0xc00000000-0xdffffffff 64bit]
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    2.006710] pci_bus 2fd9:00: busn_res: [bus 00-ff] end is updated to 00
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    2.008283] pci 2fd9:00:00.0: BAR 4: assigned [mem 0xc00000000-0xdffffffff 64bit]
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    2.015692] pci 2fd9:00:00.0: BAR 0: assigned [mem 0xe00000000-0xe00000fff 64bit]
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    2.022059] pci 2fd9:00:00.0: BAR 2: assigned [mem 0xe00001000-0xe00001fff 64bit]
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    2.080588] virtiofs virtio1: Cache len: 0x200000000 @ 0xc00000000
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    2.262960] memmap_init_zone_device initialised 2097152 pages in 140ms
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    2.277388] FS-Cache: Duplicate cookie detected
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    2.278497] FS-Cache: O-cookie c=00000005 [p=00000002 fl=222 nc=0 na=1]
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    2.279712] FS-Cache: O-cookie d=00000000efdb1e24{9P.session} n=0000000091874117
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    2.281203] FS-Cache: O-key=[10] '34323934393337343939'
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    2.282184] FS-Cache: N-cookie c=00000006 [p=00000002 fl=2 nc=0 na=1]
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    2.283358] FS-Cache: N-cookie d=00000000efdb1e24{9P.session} n=000000004a2bae5b
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    2.284746] FS-Cache: N-key=[10] '34323934393337343939'
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    2.356983] scsi 0:0:0:2: Direct-Access     Msft     Virtual Disk     1.0  PQ: 0 ANSI: 5
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    2.378139] sd 0:0:0:2: Attached scsi generic sg2 type 0
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    2.380354] sd 0:0:0:2: [sdc] 2147483648 512-byte logical blocks: (1.10 TB/1.00 TiB)
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    2.381963] sd 0:0:0:2: [sdc] 4096-byte physical blocks
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    2.383648] sd 0:0:0:2: [sdc] Write Protect is off
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    2.384686] sd 0:0:0:2: [sdc] Mode Sense: 0f 00 00 00
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    2.386290] sd 0:0:0:2: [sdc] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    2.395606] sd 0:0:0:2: [sdc] Attached SCSI disk
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    2.435899] EXT4-fs (sdc): mounted filesystem with ordered data mode. Opts: discard,errors=remount-ro,data=ordered. Quota mode: none.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    3.611142] misc dxg: dxgk: dxgkio_is_feature_enabled: Ioctl failed: -22
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    3.638330] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -22
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    3.640103] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -22
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    3.641995] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -22
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    3.644178] misc dxg: dxgk: dxgkio_query_adapter_info: Ioctl failed: -2
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    3.707182] Failed to connect to bus: No such file or directory
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    3.958002] systemd-journald[43]: Received client request to flush runtime journal.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M kernel: [    3.969514] systemd-journald[43]: File /var/log/journal/22905a45b125408d880fdbf3ec6617a7/system.journal corrupted or uncleanly shut down, renaming and replacing.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd-sysctl[55]: Couldn't write '176' to 'kernel/sysrq', ignoring: No such file or directory
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd-sysctl[55]: Couldn't write '1' to 'kernel/yama/ptrace_scope', ignoring: No such file or directory
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Mounting FUSE Control File System...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Condition check resulted in Kernel Configuration File System being skipped.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Starting Flush Journal to Persistent Storage...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Condition check resulted in Platform Persistent Storage Archival being skipped.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Finished Set the console keyboard layout.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Mounted FUSE Control File System.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Finished Create System Users.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Starting Create Static Device Nodes in /dev...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Finished Create Static Device Nodes in /dev.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Reached target Preparation for Local File Systems.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: snap.mount: Directory /snap to mount over is not empty, mounting anyway.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Mounting Ensure that the snap directory shares mount events....
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Starting Rule-based Manager for Device Events and Files...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Mounted Ensure that the snap directory shares mount events..
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Mounting Mount unit for bare, revision 5...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Mounting Mount unit for core22, revision 1380...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Mounting Mount unit for core22, revision 1621...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Mounting Mount unit for gtk-common-themes, revision 1535...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Mounting Mount unit for snapd, revision 20290...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Mounting Mount unit for snapd, revision 21759...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Mounting Mount unit for ubuntu-desktop-installer, revision 1276...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Mounting Mount unit for ubuntu-desktop-installer, revision 1286...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Finished Coldplug All udev Devices.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Finished Flush Journal to Persistent Storage.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Mounted Mount unit for bare, revision 5.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Mounted Mount unit for core22, revision 1380.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Mounted Mount unit for core22, revision 1621.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Mounted Mount unit for gtk-common-themes, revision 1535.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Mounted Mount unit for snapd, revision 20290.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Mounted Mount unit for snapd, revision 21759.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Mounted Mount unit for ubuntu-desktop-installer, revision 1276.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Mounted Mount unit for ubuntu-desktop-installer, revision 1286.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Reached target Mounted snaps.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Reached target Local File Systems.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Condition check resulted in Load AppArmor profiles being skipped.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Starting Set console font and keymap...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Starting Tell Plymouth To Write Out Runtime Data...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Condition check resulted in Load AppArmor profiles managed internally by snapd being skipped.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Condition check resulted in Set Up Additional Binary Formats being skipped.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Condition check resulted in Store a System Token in an EFI Variable being skipped.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Condition check resulted in Commit a transient machine-id on disk being skipped.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Starting Create Volatile Files and Directories...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Starting Uncomplicated firewall...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Finished Set console font and keymap.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Finished Uncomplicated firewall.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Reached target Preparation for Network.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Finished Tell Plymouth To Write Out Runtime Data.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd-tmpfiles[120]: rm_rf(/tmp/.X11-unix): Read-only file system
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd-tmpfiles[120]: fchmod() of /tmp/.X11-unix failed: Read-only file system
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Finished Create Volatile Files and Directories.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Starting Network Name Resolution...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Condition check resulted in Network Time Synchronization being skipped.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Reached target System Time Set.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Starting Record System Boot/Shutdown in UTMP...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Started Rule-based Manager for Device Events and Files.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Condition check resulted in Show Plymouth Boot Screen being skipped.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Started Dispatch Password Requests to Console Directory Watch.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Condition check resulted in Forward Password Requests to Plymouth Directory Watch being skipped.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Reached target Local Encrypted Volumes.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Finished Record System Boot/Shutdown in UTMP.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Reached target System Initialization.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Condition check resulted in Process error reports when automatic reporting is enabled (file watch) being skipped.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Condition check resulted in Process error reports when automatic reporting is enabled (timer based) being skipped.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Started Daily apt download activities.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Started Daily apt upgrade and clean activities.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Started Daily dpkg database backup timer.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Started Periodic ext4 Online Metadata Check for All Filesystems.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Condition check resulted in Discard unused blocks once a week being skipped.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Started Daily rotation of log files.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Started Daily man-db regeneration.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Started Message of the Day.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Condition check resulted in Timer to automatically fetch and run repair assertions being skipped.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Started Daily Cleanup of Temporary Directories.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Condition check resulted in Ubuntu Pro Timer for running repeated jobs being skipped.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Reached target Path Units.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Reached target Timer Units.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Listening on Unix socket for apport crash forwarding.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Listening on D-Bus System Message Bus Socket.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Starting Socket activation for snappy daemon...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Listening on UUID daemon activation socket.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Listening on Socket activation for snappy daemon.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Reached target Socket Units.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Reached target Basic System.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: System is tainted: cgroupsv1
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Starting LSB: automatic crash report generation...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Started Regular background program processing daemon.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Started D-Bus System Message Bus.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M cron[143]: (CRON) INFO (pidfile fd = 3)
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M cron[143]: (CRON) INFO (Running @reboot jobs)
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Started Save initial kernel messages after boot.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Starting Remove Stale Online ext4 Metadata Check Snapshots...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd-udevd[140]: Using default interface naming scheme 'v249'.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Condition check resulted in getty on tty2-tty6 if dbus and logind are not available being skipped.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Condition check resulted in irqbalance daemon being skipped.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Starting Dispatcher daemon for systemd-networkd...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Starting System Logging Service...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Condition check resulted in Automatically repair incorrect owner/permissions on core devices being skipped.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Condition check resulted in Wait for the Ubuntu Core chooser trigger being skipped.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Reached target Preparation for Logins.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Starting Wait until snapd is fully seeded...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Starting Snap Daemon...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Starting User Login Management...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Condition check resulted in Ubuntu Pro reboot cmds being skipped.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Starting WSL binfmt restore...
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M sh[178]: /bin/sh: 1: cannot create /proc/sys/fs/binfmt_misc/WSLInterop-late: Permission denied
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: wsl-binfmt.service: Deactivated successfully.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Finished WSL binfmt restore.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M rsyslogd: imuxsock: Acquired UNIX socket '/run/systemd/journal/syslog' (fd 3) from systemd.  [v8.2112.0]
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M rsyslogd: rsyslogd's groupid changed to 111
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd-udevd[157]: sda: Process '/usr/bin/unshare -m /usr/bin/snap auto-import --mount=/dev/sda' failed with exit code 1.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M rsyslogd: rsyslogd's userid changed to 104
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Started System Logging Service.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M rsyslogd: [origin software="rsyslogd" swVersion="8.2112.0" x-pid="169" x-info="https://www.rsyslog.com"] start
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd-udevd[152]: sdc: Process '/usr/bin/unshare -m /usr/bin/snap auto-import --mount=/dev/sdc' failed with exit code 1.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd-udevd[127]: sdb: Process '/usr/bin/unshare -m /usr/bin/snap auto-import --mount=/dev/sdb' failed with exit code 1.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Started LSB: automatic crash report generation.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: e2scrub_reap.service: Deactivated successfully.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd[1]: Finished Remove Stale Online ext4 Metadata Check Snapshots.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M snapd[175]: overlord.go:271: Acquiring state lock file
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M snapd[175]: overlord.go:276: Acquired state lock file
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd-resolved[122]: Positive Trust Anchors:
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd-resolved[122]: . IN DS 20326 8 2 e06d44b80b8f1d39a95c0b0d7c65d08458e880409bbc683457104237c7f8ec8d
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd-resolved[122]: Negative trust anchors: home.arpa 10.in-addr.arpa 16.172.in-addr.arpa 17.172.in-addr.arpa 18.172.in-addr.arpa 19.172.in-addr.arpa 20.172.in-addr.arpa 21.172.in-addr.arpa 22.172.in-addr.arpa 23.172.in-addr.arpa 24.172.in-addr.arpa 25.172.in-addr.arpa 26.172.in-addr.arpa 27.172.in-addr.arpa 28.172.in-addr.arpa 29.172.in-addr.arpa 30.172.in-addr.arpa 31.172.in-addr.arpa 168.192.in-addr.arpa d.f.ip6.arpa corp home internal intranet lan local private test
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M snapd[175]: daemon.go:247: started snapd/2.63+22.04 (series 16; classic; devmode; wsl) ubuntu/22.04 (amd64) linux/5.15.153.1-microsoft-stan.
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M networkd-dispatcher[168]: No valid path found for iwconfig
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M networkd-dispatcher[168]: No valid path found for iw
+Oct 11 09:36:51 LAPTOP-E9LS6Q7M systemd-resolved[122]: Using system hostname 'LAPTOP-E9LS6Q7M'.
+
+
+
+```
+
+* Le fichier de configuration nous prouve aussi ceci :
+
+
+```bash
+# /etc/rsyslog.conf configuration file for rsyslog
+#
+# For more information install rsyslog-doc and see
+# /usr/share/doc/rsyslog-doc/html/configuration/index.html
+#
+# Default logging rules can be found in /etc/rsyslog.d/50-default.conf
+
+
+#################
+#### MODULES ####
+#################
+
+module(load="imuxsock") # provides support for local system logging
+#module(load="immark")  # provides --MARK-- message capability
+
+# provides UDP syslog reception
+#module(load="imudp")
+#input(type="imudp" port="514")
+
+# provides TCP syslog reception
+#module(load="imtcp")
+#input(type="imtcp" port="514")
+
+# provides kernel logging support and enable non-kernel klog messages
+module(load="imklog" permitnonkernelfacility="on")
+
+###########################
+#### GLOBAL DIRECTIVES ####
+###########################
+
+#
+# Use traditional timestamp format.
+# To enable high precision timestamps, comment out the following line.
+#
+$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat
+
+# Filter duplicated messages
+$RepeatedMsgReduction on
+
+#
+# Set the default permissions for all log files.
+#
+$FileOwner syslog
+$FileGroup adm
+$FileCreateMode 0640
+$DirCreateMode 0755
+$Umask 0022
+$PrivDropToUser syslog
+$PrivDropToGroup syslog
+
+#
+# Where to place spool and state files
+#
+$WorkDirectory /var/spool/rsyslog
+
+#
+# Include all config files in /etc/rsyslog.d/
+#
+$IncludeConfig /etc/rsyslog.d/*.conf
+root@LAPTOP-E9LS6Q7M:~/scriptTP2#
+```
+
+
+## A quoi sert le service cron ?
+
+Selon Wikipédia ( https://fr.wikipedia.org/wiki/Cron#:~:text=cron%20est%20un%20programme%20qui,cycle%20d%C3%A9fini%20%C3%A0%20l'avance.), cron est un programme qui permet aux utilisateurs des systèmes Unix d’exécuter automatiquement des scripts, des commandes ou des logiciels à une date et une heure spécifiée à l’avance, ou selon un cycle défini à l’avance.
+
+
+## Que fait la commande tail -f ? A l’aide de cette commande, placer en bas de votre ´ecran
+un fenˆetre qui permette de visualiser en “temps r´eel” le contenu du fichier /var/log/messages.
+Que voyez-vous si vous red´emarrez le service cron depuis un autre shell ?
+
+
+* La commande tail -f affiche en continu les dernières lignes d'un fichier à mesure qu'il est mis à jour. Elle est couramment utilisée pour suivre les fichiers de log en temps réel.
+
+
+* A l’aide de cette commande, placer en bas de votre ´ecran
+un fenˆetre qui permette de visualiser en “temps r´eel” le contenu du fichier /var/log/messages:
+
+
+
+```bash
+$IncludeConfig /etc/rsyslog.d/*.conf
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# tail -f /var/log/syslog
+Oct 13 21:07:25 LAPTOP-E9LS6Q7M systemd-resolved[145]: Clock change detected. Flushing caches.
+Oct 13 21:14:35 LAPTOP-E9LS6Q7M systemd-resolved[145]: message repeated 12 times: [ Clock change detected. Flushing caches.]
+Oct 13 21:15:03 LAPTOP-E9LS6Q7M CRON[1701]: (root) CMD (command -v debian-sa1 > /dev/null && debian-sa1 1 1)
+Oct 13 21:15:10 LAPTOP-E9LS6Q7M systemd-resolved[145]: Clock change detected. Flushing caches.
+Oct 13 21:16:53 LAPTOP-E9LS6Q7M systemd-resolved[145]: message repeated 3 times: [ Clock change detected. Flushing caches.]
+Oct 13 21:17:05 LAPTOP-E9LS6Q7M CRON[1708]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Oct 13 21:17:27 LAPTOP-E9LS6Q7M systemd-resolved[145]: Clock change detected. Flushing caches.
+Oct 13 21:24:40 LAPTOP-E9LS6Q7M systemd-resolved[145]: message repeated 12 times: [ Clock change detected. Flushing caches.]
+Oct 13 21:25:04 LAPTOP-E9LS6Q7M CRON[1730]: (root) CMD (command -v debian-sa1 > /dev/null && debian-sa1 1 1)
+Oct 13 21:25:15 LAPTOP-E9LS6Q7M systemd-resolved[145]: Clock change detected. Flushing caches.
+
+```
+
+* Quand je fais ceci dans un autre shell je n'ai malheureusement rien : 
+
+
+```bash
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# sudo systemctl restart cron
+root@LAPTOP-E9LS6Q7M:~/scriptTP2#
+```
+
+
+
+
+## - Expliquer `a quoi sert le fichier /etc/logrotate.conf.
+
+* Selon https://doc.ubuntu-fr.org/logrotate,  Logrotate permet de limiter la taille des fichiers journaux présents dans /var/log.
+
+* Pour chaque fichier journal, logrotate réalise 2 opérations simultanées :
+
+   * la rotation : il archive le fichier journal sous un autre nom et supprime la plus ancienne archive
+   * la compression : il compresse éventuellement le fichier journal avant de l'archiver.
+
+
+
+##  Examiner la sortie de la commande dmesg. Quel modèle de processeur linux d´etecte-il sur votre machine ? Quels mod`eles de cartes réeseaux détecte-il ?
+
+
+```bash
+   root@LAPTOP-E9LS6Q7M:~/scriptTP2# dmesg | grep -i "cpu"
+[    0.000000] Command line: initrd=\initrd.img WSL_ROOT_INIT=1 panic=-1 nr_cpus=16 hv_utils.timesync_implicit=1 console=hvc0 debug pty.legacy_count=0 WSL_ENABLE_CRASH_DUMP=1
+[    0.000000] KERNEL supported cpus:
+[    0.083648] smpboot: Allowing 16 CPUs, 0 hotplug CPUs
+[    0.094661] setup_percpu: NR_CPUS:256 nr_cpumask_bits:256 nr_cpu_ids:16 nr_node_ids:1
+[    0.099954] percpu: Embedded 54 pages/cpu s180696 r8192 d32296 u262144
+[    0.099977] pcpu-alloc: s180696 r8192 d32296 u262144 alloc=1*2097152
+[    0.099984] pcpu-alloc: [0] 00 01 02 03 04 05 06 07 [0] 08 09 10 11 12 13 14 15
+[    0.100047] Kernel command line: initrd=\initrd.img WSL_ROOT_INIT=1 panic=-1 nr_cpus=16 hv_utils.timesync_implicit=1 console=hvc0 debug pty.legacy_count=0 WSL_ENABLE_CRASH_DUMP=1
+[    0.223776] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=16, Nodes=1
+[    0.287868] rcu:     RCU restricting CPUs from NR_CPUS=256 to nr_cpu_ids=16.
+[    0.287880] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=16
+[    0.298403] x86/cpu: User Mode Instruction Prevention (UMIP) activated
+[    0.308225] smpboot: CPU0: AMD Ryzen 7 5700U with Radeon Graphics (family: 0x17, model: 0x68, stepping: 0x1)
+[    0.308225] smp: Bringing up secondary CPUs ...
+[    0.308225] .... node  #0, CPUs:        #1  #2  #3  #4  #5  #6  #7  #8
+[    0.329899] smp: Brought up 1 node, 16 CPUs
+[    0.370285] cpuidle: using governor menu
+```
+
+
+```bash
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# dmesg | grep -i "cpu"
+[    0.000000] Command line: initrd=\initrd.img WSL_ROOT_INIT=1 panic=-1 nr_cpus=16 hv_utils.timesync_implicit=1 console=hvc0 debug pty.legacy_count=0 WSL_ENABLE_CRASH_DUMP=1
+[    0.000000] KERNEL supported cpus:
+[    0.083648] smpboot: Allowing 16 CPUs, 0 hotplug CPUs
+[    0.094661] setup_percpu: NR_CPUS:256 nr_cpumask_bits:256 nr_cpu_ids:16 nr_node_ids:1
+[    0.099954] percpu: Embedded 54 pages/cpu s180696 r8192 d32296 u262144
+[    0.099977] pcpu-alloc: s180696 r8192 d32296 u262144 alloc=1*2097152
+[    0.099984] pcpu-alloc: [0] 00 01 02 03 04 05 06 07 [0] 08 09 10 11 12 13 14 15
+[    0.100047] Kernel command line: initrd=\initrd.img WSL_ROOT_INIT=1 panic=-1 nr_cpus=16 hv_utils.timesync_implicit=1 console=hvc0 debug pty.legacy_count=0 WSL_ENABLE_CRASH_DUMP=1
+[    0.223776] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=16, Nodes=1
+[    0.287868] rcu:     RCU restricting CPUs from NR_CPUS=256 to nr_cpu_ids=16.
+[    0.287880] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=16
+[    0.298403] x86/cpu: User Mode Instruction Prevention (UMIP) activated
+[    0.308225] smpboot: CPU0: AMD Ryzen 7 5700U with Radeon Graphics (family: 0x17, model: 0x68, stepping: 0x1)
+[    0.308225] smp: Bringing up secondary CPUs ...
+[    0.308225] .... node  #0, CPUs:        #1  #2  #3  #4  #5  #6  #7  #8
+[    0.329899] smp: Brought up 1 node, 16 CPUs
+[    0.370285] cpuidle: using governor menu
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# dmesg | grep -i "eth"  # Pour Ethernet
+dmesg | grep -i "net"  # Pour réseaux en général
+[    1.087346] usbcore: registered new interface driver cdc_ether
+[    1.658417] IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+[    0.370030] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.370194] audit: initializing netlink subsys (disabled)
+[    0.522883] NET: Registered PF_INET protocol family
+[    0.528072] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    0.826676] FS-Cache: Netfs '9p' registered for caching
+[    0.826925] FS-Cache: Netfs 'ceph' registered for caching
+[    0.834080] NET: Registered PF_ALG protocol family
+[    1.086579] NET: Registered PF_PPPOX protocol family
+[    1.090491] hv_vmbus: registering driver hv_netvsc
+[    1.149971] drop_monitor: Initializing network drop monitor service
+[    1.167260] Initializing XFRM netlink socket
+[    1.168327] NET: Registered PF_INET6 protocol family
+[    1.172316] NET: Registered PF_PACKET protocol family
+[    1.177311] 9pnet: Installing 9P2000 support
+[    1.181743] NET: Registered PF_VSOCK protocol family
+[    1.658417] IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+root@LAPTOP-E9LS6Q7M:~/scriptTP2#
+```
+
+
+
+* Voici les résultats que nous pouvons déduire : 
+
+
+* Processeur : AMD Ryzen 7 5700U
+
+```bash
+[    0.308225] smpboot: CPU0: AMD Ryzen 7 5700U with Radeon Graphics (family: 0x17, model: 0x68, stepping: 0x1)
+
+
+
+```
+
+
+* Carte réseau : Interface Ethernet détectée sous eth0.
+
+```bash
+[    1.658417] IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
