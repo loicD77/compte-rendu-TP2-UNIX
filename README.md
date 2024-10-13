@@ -419,6 +419,212 @@ vi /etc/init.d/firewall
  
 
 
+II ) Processus
+
+2.1 .Exercice : Etude des processus UNIX
+
+
+1.
+
+
+* Voici un exemple d'utilisation de la commande ps :
+
+
+```bash 
+This message is shown once a day. To disable it please create the
+/root/.hushlogin file.
+root@LAPTOP-E9LS6Q7M:/mnt/c/Windows/System32# ps
+    PID TTY          TIME CMD
+    420 pts/0    00:00:00 bash
+    523 pts/0    00:00:00 ps
+root@LAPTOP-E9LS6Q7M:/mnt/c/Windows/System32#
+```
+
+
+* Voici l'explication de l'information TIME :
+
+
+```bash 
+ime        TIME      Temps CPU cumulé, au format « [JJ-]HH:MM:SS » (alias cputime).
+```
+
+
+
+
+```bash 
+E9LS6Q7M:/mnt/c/Windows/System32# top
+top - 11:24:59 up 8 min,  1 user,  load average: 0.03, 0.04, 0.00
+Tasks:  42 total,   1 running,  41 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.1 us,  0.1 sy,  0.0 ni, 99.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :   7602.3 total,   6619.2 free,    572.7 used,    410.5 buff/cache
+MiB Swap:   2048.0 total,   2048.0 free,      0.0 used.   6788.4 avail Mem
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+    312 root      20   0  154368  71104  17900 S   0.3   0.9   0:05.99 python3.10
+      2 root      20   0    2616   1440   1320 S   0.0   0.0   0:00.01 init-systemd(Ub
+      6 root      20   0    2616      4      0 S   0.0   0.0   0:00.00 init
+     45 root      19  -1   31348  12108  11092 S   0.0   0.2   0:00.26 systemd-journal
+     68 root      20   0   21968   5852   4488 S   0.0   0.1   0:00.38 systemd-udevd
+     78 root      20   0  152992    184     24 S   0.0   0.0   0:00.00 snapfuse
+     82 root      20   0  152992   2232     24 S   0.0   0.0   0:00.00 snapfuse
+     87 root      20   0  377284  11216    212 S   0.0   0.1   0:01.09 snapfuse
+     92 root      20   0  153124   2252     48 S   0.0   0.0   0:00.00 snapfuse
+    101 root      20   0  152992    208     44 S   0.0   0.0   0:00.00 snapfuse
+    106 root      20   0  302520   6828    312 S   0.0   0.1   0:00.24 snapfuse
+    111 root      20   0  152992   2216     24 S   0.0   0.0   0:00.00 snapfuse
+    115 root      20   0  302520  12844    196 S   0.0   0.2   0:02.16 snapfuse
+    124 systemd+  20   0   25540  12640   8444 S   0.0   0.2   0:00.50 systemd-resolve
+    141 root      20   0    4308   2704   2468 S   0.0   0.0   0:00.01 cron
+    147 message+  20   0    8544   4584   3984 S   0.0   0.1   0:00.10 dbus-daemon
+    169 root      20   0   30104  19080  10300 S   0.0   0.2   0:00.31 networkd-dispat
+    170 syslog    20   0  222404   7088   4276 S   0.0   0.1   0:00.04 rsyslogd
+    172 root      20   0 1984832  43396  18360 S   0.0   0.6   0:01.16 snapd
+    198 root      20   0   15340   7428   6472 S   0.0   0.1   0:00.31 systemd-logind
+    267 root      20   0    4784   3324   3084 S   0.0   0.0   0:00.15 subiquity-serve
+    273 root      20   0  107228  21464  13208 S   0.0   0.3   0:00.18 unattended-upgr
+    281 root      20   0    3240   1056    972 S   0.0   0.0   0:00.00 agetty 
+```
+
+
+
+* D'après les résultats de la commande top, le processus qui utilise le plus de CPU est effectivement python3.10, avec une utilisation de 0.3%. Voici un résumé :
+
+
+
+```bash 
+PID : 312
+Utilisateur : root
+Utilisation du CPU : 0.3%
+Mémoire utilisée : 71 104 Ko
+```
+
+* Le premier processus lancée après le déemarrage du système :
+
+
+
+```bash 
+root@LAPTOP-E9LS6Q7M:/mnt/c/Windows/System32# ps -p 1
+    PID TTY          TIME CMD
+      1 ?        00:00:12 systemd
+root@LAPTOP-E9LS6Q7M:/mnt/c/Windows/System32#
+
+```
+
+* Le premier processus lancé après le démarrage de mon système est **systemd**
+
+
+* Heure 
+
+
+```bash 
+root@LAPTOP-E9LS6Q7M:/mnt/c/Windows/System32# who -b
+         system boot  2024-10-13 11:16
+root@LAPTOP-E9LS6Q7M:/mnt/c/Windows/System32#
+```
+
+
+* La sortie indique que mon système a démarré le 13 octobre 2024 à 11:16
+
+Voici une autre commande : 
+
+```bash 
+root@LAPTOP-E9LS6Q7M:/mnt/c/Windows/System32# uptime
+ 11:39:06 up 23 min,  1 user,  load average: 0.06, 0.04, 0.00
+root@LAPTOP-E9LS6Q7M:/mnt/c/Windows/System32#
+```
+
+
+* up 23 min : Cela indique que ma machine est en fonctionnement depuis 23 minutes.
+
+
+```bash 
+ root@LAPTOP-E9LS6Q7M:/mnt/c/Windows/System32# ps -e | wc -l
+44
+root@LAPTOP-E9LS6Q7M:/mnt/c/Windows/System32#
+```
+
+Il y a donc environ 44 processus actifs sur ma machine depuis son démarrage.
+
+
+
+
+2.
+
+Trouver une option de la commande ps permettant d’afficher le PPID d’un processus :
+
+ps -ef
+
+
+```bash 
+UID          PID    PPID  C STIME TTY          TIME CMD
+root           1       0  1 11:16 ?        00:00:29 /sbin/init
+root           2       1  0 11:16 ?        00:00:00 /init
+root           6       2  0 11:16 ?        00:00:00 plan9 --control-socket 6 --log-level 4 --server-fd 7 --pipe-fd 9 --l
+root          45       1  0 11:16 ?        00:00:00 /lib/systemd/systemd-journald
+root          68       1  0 11:16 ?        00:00:00 /lib/systemd/systemd-udevd
+root          78       1  0 11:16 ?        00:00:00 snapfuse /var/lib/snapd/snaps/bare_5.snap /snap/bare/5 -o ro,nodev,a
+root          82       1  0 11:16 ?        00:00:00 snapfuse /var/lib/snapd/snaps/core22_1380.snap /snap/core22/1380 -o
+root          87       1  0 11:16 ?        00:00:01 snapfuse /var/lib/snapd/snaps/core22_1621.snap /snap/core22/1621 -o
+root          92       1  0 11:16 ?        00:00:00 snapfuse /var/lib/snapd/snaps/gtk-common-themes_1535.snap /snap/gtk-
+root         101       1  0 11:16 ?        00:00:00 snapfuse /var/lib/snapd/snaps/snapd_20290.snap /snap/snapd/20290 -o
+root         106       1  0 11:16 ?        00:00:00 snapfuse /var/lib/snapd/snaps/snapd_21759.snap /snap/snapd/21759 -o
+root         111       1  0 11:16 ?        00:00:00 snapfuse /var/lib/snapd/snaps/ubuntu-desktop-installer_1276.snap /sn
+root         115       1  0 11:16 ?        00:00:02 snapfuse /var/lib/snapd/snaps/ubuntu-desktop-installer_1286.snap /sn
+systemd+     124       1  0 11:16 ?        00:00:00 /lib/systemd/systemd-resolved
+root         141       1  0 11:16 ?        00:00:00 /usr/sbin/cron -f -P
+message+     147       1  0 11:16 ?        00:00:00 @dbus-daemon --system --address=systemd: --nofork --nopidfile --syst
+root         169       1  0 11:16 ?        00:00:00 /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
+syslog       170       1  0 11:16 ?        00:00:00 /usr/sbin/rsyslogd -n -iNONE
+root         172       1  0 11:16 ?        00:00:01 /usr/lib/snapd/snapd
+root         198       1  0 11:16 ?        00:00:00 /lib/systemd/systemd-logind
+root         267       1  0 11:16 ?        00:00:00 /bin/bash /snap/ubuntu-desktop-installer/1286/bin/subiquity-server
+root         273       1  0 11:16 ?        00:00:00 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-s
+root         281       1  0 11:16 hvc0     00:00:00 /sbin/agetty -o -p -- \u --noclear --keep-baud console 115200,38400,
+root         296       1  0 11:16 tty1     00:00:00 /sbin/agetty -o -p -- \u --noclear tty1 linux
+root         303       1  0 11:16 ?        00:00:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+root         312     267  0 11:16 ?        00:00:08 /snap/ubuntu-desktop-installer/1286/usr/bin/python3.10 -m subiquity.
+postgres     321       1  0 11:16 ?        00:00:00 /usr/lib/postgresql/14/bin/postgres -D /var/lib/postgresql/14/main -
+postgres     349     321  0 11:16 ?        00:00:00 postgres: 14/main: checkpointer
+postgres     350     321  0 11:16 ?        00:00:00 postgres: 14/main: background writer
+postgres     351     321  0 11:16 ?        00:00:00 postgres: 14/main: walwriter
+postgres     352     321  0 11:16 ?        00:00:00 postgres: 14/main: autovacuum launcher
+postgres     353     321  0 11:16 ?        00:00:00 postgres: 14/main: stats collector
+postgres     354     321  0 11:16 ?        00:00:00 postgres: 14/main: logical replication launcher
+root         418       2  0 11:16 ?        00:00:00 /init
+root         419     418  0 11:16 ?        00:00:00 /init
+root         420     419  0 11:16 pts/0    00:00:00 -bash
+root         421       2  0 11:16 pts/1    00:00:00 /bin/login -f
+root         472       1  0 11:16 ?        00:00:00 /lib/systemd/systemd --user
+root         477     472  0 11:16 ?        00:00:00 (sd-pam)
+root         494     421  0 11:16 pts/1    00:00:00 -bash
+root         509     312  0 11:16 ?        00:00:15 python3 /snap/ubuntu-desktop-installer/1286/usr/bin/cloud-init statu
+root        9803     420  0 11:55 pts/0    00:00:00 ps -ef
+root@LAPTOP-E9LS6Q7M:/mnt/c/Windows/System32#
+```
+
+
+* Donner la liste ordonnée de tous les processus ancêtres de la commande ps en cours d’exécution.
+
+
+
+
+```bash 
+root@LAPTOP-E9LS6Q7M:/mnt/c/Windows/System32# pstree -p 8946
+root@LAPTOP-E9LS6Q7M:/mnt/c/Windows/System32#
+```
+
+
+
+* Cela peut ne rien retourner si ps n'a pas d'enfants.
+
+
+
+
+
+
+
+
+
 
 
 
