@@ -2020,7 +2020,7 @@ COMMAND LINE OPTIONS
 
 
 
-![Choix de las langue](./img/choix-langue.png "Choix de la langues")
+![htop_couleur](./img/htop_couleur.png "htop_couleur")
 
 
 
