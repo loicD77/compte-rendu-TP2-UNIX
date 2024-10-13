@@ -2746,7 +2746,7 @@ kill 1228
 
 * J'ai utilisé la commande **systemctl status rsyslog**
 
-![rayslog](./img/rayslog "rayslog")
+![rayslog](./img/rayslog.png "rayslog")
 
 
 
