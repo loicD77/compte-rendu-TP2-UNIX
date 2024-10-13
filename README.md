@@ -10,12 +10,33 @@ DARRAS Loïc L3 PRO PROJET WEB ET MOBILE
 * Puis je me suis concentré sur les processus, sur l'arrèt de ces processus et enfin les tubes et le journal système rsyslog.
 * Ce compte rendu est le résultat de la fusion des données issues de ma machine en cours et de ma machine personnelle
 
+## Table des Matières
 
+
+1. [Secure Shell : SSH](#i-secure-shell--ssh)
+   - [1.1 Connexion SSH root et configuration](#11-connexion-ssh-root-et-configuration)
+   - [1.2 Authentification par clé / Génération de clés](#12-authentification-par-clé--génération-de-clés)
+   - [1.3 Authentification par clé / Connexion serveur](#13-authentification-par-clé--connexion-serveur)
+   - [1.4 Authentification par clé depuis la machine hôte](#14-authentification-par-clé-depuis-la-machine-hôte)
+   - [1.5 Sécurisation de l'accès SSH](#15-sécurisation-de-laccès-ssh)
+2. [Processus](#ii--processus)
+    - [2.1 Étude des processus UNIX](#21-exercice--etude-des-processus-unix)
+      - [2.1.1 Affichage des processus](#211-affichage-des-processus)
+      - [2.1.2 PPID et processus parent](#212-ppid-et-processus-parent)
+      - [2.1.3 Commande `pstree`](#213-commande-pstree)
+      - [2.1.4 Utilisation de la commande `top` et `htop`](#214-utilisation-de-la-commande-top-et-htop)
+3. [Arrêt d'un processus](#iii-arrêt-dun-processus)
+4. [Les tubes](#iv-les-tubes)
+5. [Journal système rsyslog](#v-journal-système-rsyslog)
+   
 
 
 # I) Secure Shell : SSH
 
-1.1 . Comme le demande le tp, je me suis connecté en root et j'ai configuré le ssh . Pour cela j'ai utilisé les commandes **apt search** et **apt install** . (Ici ce sont des exmples fictifs avec WSL avec Windows car je n'ai pas enregisté ceci au moment des faits)
+## 1.1 Connexion SSH root et configuration
+
+
+ Comme le demande le tp, je me suis connecté en root et j'ai configuré le ssh . Pour cela j'ai utilisé les commandes **apt search** et **apt install** . (Ici ce sont des exmples fictifs avec WSL avec Windows car je n'ai pas enregisté ceci au moment des faits)
 
 
 * apt install
@@ -299,7 +320,10 @@ DESCRIPTION
 ```
 
 
-1.2 .  J'ai créé  une clef d’authentification pour me connecter directement a mon serveur Linux.:
+## 1.2 Authentification par clé / Génération de clés
+
+
+ J'ai créé  une clef d’authentification pour me connecter directement a mon serveur Linux.:
 
 ```bash
 1013781@ppti-24-308-17:~$ ssh-keygen
@@ -327,7 +351,9 @@ The key's randomart image is:
 ```
 
 
-1.3  Ici j'ai copié la clé publique sur le serveur :
+## 1.3 Authentification par clé / Connexion serveur
+
+Ici j'ai copié la clé publique sur le serveur :
 
 ```bash 
 ssh-copy-id root@10.20.0.188 
@@ -377,7 +403,9 @@ ED25519 key fingerprint is SHA256:ZnqDicCb1/9DRN6O1faHyKbNW0S/OzwMwCumkD9mkXk.
 ```
 
 
-1.4 . J'ai bien utilisé la commande **ssh -i maclef.pub root@ipserveur**
+## 1.4 Authentification par clé depuis la machine hôte
+
+J'ai bien utilisé la commande **ssh -i maclef.pub root@ipserveur**
 
 
 ```bash 
@@ -392,7 +420,7 @@ ED25519 key fingerprint is SHA256:ZnqDicCb1/9DRN6O1faHyKbNW0S/OzwMwCumkD9mkXk.
 
 
 
-1.5 . 
+## 1.5 Sécurisation de l'accès SSH
  
 Source : Diamond Connect 
 
@@ -420,12 +448,12 @@ vi /etc/init.d/firewall
  
 
 
-II ) Processus
+# II ) Processus 
 
-2.1 .Exercice : Etude des processus UNIX
+## 2.1 .Exercice : Etude des processus UNIX
 
 
-1.
+### 2.1.1 Affichage des processus
 
 
 * Voici un exemple d'utilisation de la commande ps :
@@ -605,7 +633,7 @@ Il y a donc environ 44 processus actifs sur ma machine depuis son démarrage.
 
 
 
-2.
+### 2.1.2 PPID et processus parent
 
 Trouver une option de la commande ps permettant d’afficher le PPID d’un processus :
 
@@ -677,8 +705,12 @@ root@LAPTOP-E9LS6Q7M:/mnt/c/Windows/System32#
 
 
 
+### 2.1.3 Commande `pstree`
 
-3. J'ai utilisé ** 
+
+Commande `pstree`
+
+ J'ai utilisé **sudo apt update** 
 
 ```bash 
 root@LAPTOP-E9LS6Q7M:/mnt/c/Windows/System32# sudo apt update
@@ -1926,6 +1958,9 @@ Processing triggers for libgdk-pixbuf-2.0-0:amd64 (2.42.8+dfsg-1ubuntu0.3) ...
 root@LAPTOP-E9LS6Q7M:/mnt/c/Windows/System32# sudo apt upgrade
 ```
 
+### 2.1.4 Utilisation de la commande `top` et `htop`
+
+
 * J'ai bien utilisé la commande **top** :
 
 ```bash 
@@ -2185,7 +2220,7 @@ Ses inconvénients peuvent être dû:
 * à son absence sur certaines distribution Linux
 * certaines fonctions avancées peuvent être moins visibles ou accessibles que dans top, qui expose ses fonctionnalités directement dans l'affichage en ligne de commande
 
-3. Exercice 2 : Arrêt d'un processus
+# III) Arrêt d'un processus
 
 * Voici les deux scripts shells contenant des boucles affichant la date, dont **date.sh** et **date-toto.sh**:
 
@@ -2803,7 +2838,7 @@ kill 1228
 
 
 
-4. Exercice 3 : les tubes :
+# IV) Les tubes :
 
 
 
@@ -2834,6 +2869,7 @@ kill 1228
 
 
 
+# V) Journal système rsyslog
 
 5. Journal système rsyslog
 
@@ -3454,6 +3490,277 @@ root@LAPTOP-E9LS6Q7M:~/scriptTP2#
 ```bash
 [    1.658417] IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
