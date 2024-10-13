@@ -2126,23 +2126,603 @@ Ses inconvénients peuvent être dû:
 
 
 
+* Pour l'arrêt avec jobs et fg j'ai eu des difficultés :
+
+```bash
+-r-xr-xr-x 2 root root     57344 Sep 28 08:29  ztrace_maps.dll
+root@LAPTOP-E9LS6Q7M:/mnt/c/Windows/System32# cd scriptTP2
+-bash: cd: scriptTP2: No such file or directory
+root@LAPTOP-E9LS6Q7M:/mnt/c/Windows/System32# cd ~
+root@LAPTOP-E9LS6Q7M:~# cd scriptTP2
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# sh date.sh
+date16:25:10
+date16:25:11
+date16:25:12
+date16:25:13
+date16:25:14
+date16:25:15
+date16:25:16
+date16:25:17
+sh date-toto.sh
+
+date16:25:18
+date16:25:19
+date16:25:20
+sh date-toto.sh
+date16:25:21
+date16:25:22
+date16:25:23
+date16:25:24
+
+
+date16:25:25
+date16:25:26
+
+date16:25:27
+date16:25:28
+date16:25:29
+^[[A^[[Adate16:25:30
+date16:25:32
+^C
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# sh date.sh &
+[1] 682
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# date16:25:48
+date16:25:49
+date16:25:50
+date16:25:51
+date16:25:52
+date16:25:53
+date16:25:54
+date16:25:55
+sh date-toto.sh &
+date16:25:56                      sh date-toto.sh &
+[2] 702
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# date16:25:57
+toto11:25:57
+date16:25:58
+toto11:25:58
+date16:25:59
+toto11:25:59
+date16:26:00
+toto11:26:00
+date16:26:01
+toto11:26:01
+date16:26:02
+toto11:26:02
+date16:26:03
+jobs
+toto11:26:03                      jobs
+[1]-  Running                 sh date.sh &
+[2]+  Running                 sh date-toto.sh &
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# date16:26:05
+toto11:26:05
+date16:26:06
+toto11:26:06
+date16:26:07
+toto11:26:07
+date16:26:08
+toto11:26:08
+date16:26:09
+toto11:26:09
+date16:26:10
+toto11:26:10
+date16:26:11
+toto11:26:11
+fg %1                             fg %1
+sh date.sh
+date16:26:12
+toto11:26:12
+date16:26:13
+toto11:26:13
+date16:26:14
+toto11:26:14
+date16:26:15
+toto11:26:15
+date16:26:16
+toto11:26:16
+date16:26:17
+toto11:26:17
+date16:26:18
+toto11:26:18
+fg %2
+
+date16:26:19
+toto11:26:19
+fg %2
+
+date16:26:20
+toto11:26:20
+date16:26:21
+toto11:26:21
+date16:26:22
+toto11:26:22
+date16:26:23
+toto11:26:23
+date16:26:24
+toto11:26:24
+date16:26:25
+toto11:26:25
+date16:26:26
+toto11:26:26
+date16:26:27
+toto11:26:27
+date16:26:28
+toto11:26:28
+date16:26:29
+toto11:26:29
+date16:26:30
+toto11:26:30
+date16:26:31
+toto11:26:31
+date16:26:32
+toto11:26:32
+date16:26:33
+toto11:26:33
+date16:26:34
+toto11:26:34
+date16:26:35
+toto11:26:35
+date16:26:36
+toto11:26:36
+date16:26:37
+toto11:26:38
+date16:26:38
+toto11:26:39
+date16:26:39
+toto11:26:40
+date16:26:40
+toto11:26:41
+date16:26:41
+toto11:26:42
+date16:26:42
+toto11:26:43
+date16:26:43
+toto11:26:44
+date16:26:44
+toto11:26:45
+date16:26:45
+toto11:26:46
+date16:26:46
+toto11:26:47
+date16:26:47
+toto11:26:48
+date16:26:48
+toto11:26:49
+date16:26:49
+toto11:26:50
+date16:26:50
+toto11:26:51
+date16:26:51
+toto11:26:52
+date16:26:52
+toto11:26:53
+date16:26:53
+toto11:26:54
+date16:26:54
+toto11:26:55
+date16:26:55
+toto11:26:56
+date16:26:56
+toto11:26:57
+date16:26:57
+toto11:26:58
+date16:26:58
+toto11:26:59
+date16:26:59
+toto11:27:00
+date16:27:00
+toto11:27:01
+date16:27:01
+toto11:27:02
+date16:27:03
+toto11:27:03
+date16:27:04
+toto11:27:04
+date16:27:05
+toto11:27:05
+date16:27:06
+toto11:27:06
+date16:27:07
+toto11:27:07
+date16:27:08
+toto11:27:08
+date16:27:09
+toto11:27:09
+date16:27:11
+toto11:27:11
+date16:27:12
+toto11:27:12
+date16:27:13
+toto11:27:13
+date16:27:14
+toto11:27:14
+date16:27:15
+toto11:27:15
+date16:27:16
+toto11:27:16
+date16:27:17
+toto11:27:17
+date16:27:18
+toto11:27:18
+date16:27:19
+toto11:27:19
+date16:27:20
+toto11:27:20
+date16:27:21
+toto11:27:21
+date16:27:22
+toto11:27:22
+date16:27:23
+toto11:27:23
+date16:27:24
+toto11:27:24
+date16:27:25
+toto11:27:25
+date16:27:26
+toto11:27:26
+date16:27:27
+toto11:27:27
+date16:27:28
+toto11:27:28
+date16:27:29
+toto11:27:29
+date16:27:30
+
+toto11:27:30
+
+date16:27:31
+toto11:27:31
+
+date16:27:32
+toto11:27:32
+
+date16:27:33
+toto11:27:33
+date16:27:34
+toto11:27:34
+date16:27:35
+toto11:27:36
+date16:27:36
+toto11:27:37
+fg %1
+
+date16:27:37
+toto11:27:38
+fg %1
+
+date16:27:38
+toto11:27:39
+fg %1
+
+date16:27:39
+toto11:27:40
+date16:27:40
+toto11:27:41
+date16:27:41
+toto11:27:42
+date16:27:42
+toto11:27:43
+date16:27:44
+toto11:27:44
+date16:27:45
+toto11:27:45
+fg %2
+
+date16:27:46
+toto11:27:46
+date16:27:47
+toto11:27:47
+date16:27:48
+toto11:27:48
+date16:27:49
+toto11:27:49
+date16:27:50
+toto11:27:50
+date16:27:51
+toto11:27:51
+date16:27:52
+toto11:27:52
+date16:27:53
+toto11:27:53
+date16:27:54
+toto11:27:54
+date16:27:55
+toto11:27:55
+date16:27:56
+toto11:27:56
+date16:27:57
+toto11:27:57
+date16:27:58
+toto11:27:58
+date16:27:59
+toto11:27:59
+date16:28:00
+toto11:28:01
+date16:28:01
+toto11:28:02
+date16:28:02
+toto11:28:03
+date16:28:03
+jobs
+toto11:28:04
+
+date16:28:04
+toto11:28:05
+date16:28:05
+jobs
+toto11:28:06
+
+date16:28:06
+toto11:28:07
+jobs
+date16:28:07
+toto11:28:08
+^C
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# jobs
+toto11:28:09
+toto11:28:10                      jobs
+jobs
+toto11:28:11
+toto11:28:12
+^C
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# toto11:28:13
+toto11:28:14
+toto11:28:15
+^C
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# toto11:28:16
+toto11:28:18
+^C
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# ^C
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# ^C
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# toto11:28:19
+toto11:28:20
+toto11:28:21
+^C
+root@LAPTOP-E9LS6Q7M:~/scriptTP2#
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# toto11:28:22
+toto11:28:23
+toto11:28:24
+toto11:28:25
+toto11:28:26
+toto11:28:27
+^C
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# toto11:28:28
+jobs                              jobs
+[2]+  Running                 sh date-toto.sh &
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# toto11:28:29
+jobs                              jobs
+[2]+  Running                 sh date-toto.sh &
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# toto11:28:30
+toto11:28:31
+toto11:28:32
+toto11:28:33
+toto11:28:34
+toto11:28:35
+toto11:28:36
+toto11:28:37
+toto11:28:38
+toto11:28:39
+toto11:28:40
+toto11:28:41
+toto11:28:42
+toto11:28:43
+toto11:28:44
+toto11:28:45
+toto11:28:46
+toto11:28:47
+toto11:28:48
+toto11:28:49
+toto11:28:51
+toto11:28:52
+toto11:28:53
+toto11:28:54
+toto11:28:55
+toto11:28:56
+toto11:28:57
+toto11:28:58
+toto11:28:59
+toto11:29:00
+toto11:29:01
+toto11:29:02
+toto11:29:03
+toto11:29:04
+toto11:29:05
+toto11:29:06
+toto11:29:07
+toto11:29:08
+toto11:29:09
+toto11:29:10
+toto11:29:11
+toto11:29:12
+toto11:29:13
+jobs
+toto11:29:14                      jobs
+[2]+  Running                 sh date-toto.sh &
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# toto11:29:15
+
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# toto11:29:16
+jobs
+toto11:29:17                      jobs
+[2]+  Running                 sh date-toto.sh &
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# toto11:29:18
+toto11:29:19
+toto11:29:20
+toto11:29:21
+toto11:29:22
+toto11:29:24
+fg %2  # Remplacez 2 par le numérofg %2  # Remplacez 2 par le numéro de job du second script
+sh date-toto.sh
+toto11:29:25
+fg %2  # Remplacez 2 par le numéro de job du second script
+
+toto11:29:26
+fg %2  # Remplacez 2 par le numéro de job du second script
+
+toto11:29:27
+fg %2  # Remplacez 2 par le numéro de job du second script
+
+fg %2  # Remplacez 2 par le numéro de job du second script
+toto11:29:28
+
+^[[A^[[Atoto11:29:29
+toto11:29:30
+toto11:29:31
+toto11:29:32
+toto11:29:33
+toto11:29:34
+toto11:29:35
+toto11:29:36
+toto11:29:37
+toto11:29:38
+toto11:29:39
+toto11:29:40
+toto11:29:41
+toto11:29:42
+toto11:29:43
+toto11:29:44
+toto11:29:46
+toto11:29:47
+toto11:29:48
+toto11:29:49
+toto11:29:50
+toto11:29:51
+toto11:29:52
+toto11:29:53
+toto11:29:54
+toto11:29:55
+toto11:29:56
+toto11:29:58
+fg %2  # Utilisez le numéro de job approprié
+
+fg %2  # Utilisez le numéro de job approprié
+
+toto11:29:59
+
+toto11:30:00
+fg %2  # Utilisez le numéro de job approprié
+^[[A^[[A^[[Atoto11:30:01
+^[[A^[[A^[[A^[[A^[[Atoto11:30:02
+^[[A^[[A^[[A^C
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# jobs
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# jobs
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# jobs
+root@LAPTOP-E9LS6Q7M:~/scriptTP2#
 
 
 
+```
 
 
+* Voici comment arreter les 2 horloges avec ps et kill :
 
+```bash
+[2]+  Terminated              sh date-toto.sh
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# sh date.sh &
+sh date-toto.sh &
+[1] 1227
+[2] 1228
+root@LAPTOP-E9LS6Q7M:~/scriptTP2# totodate16:13:37
+11:13:37
+totodate16:13:38
+11:13:38
+totodate11:13:39
+16:13:39
+totodate11:13:40
+16:13:40
+totodate11:13:41
+16:13:41
+totodate11:13:42
+16:13:42
+datetoto16:13:43
+11:13:43
+totodate16:13:44
+11:13:44
+totodate11:13:45
+16:13:45
+datetoto16:13:46
+11:13:46
+datetoto16:13:47
+11:13:47
+totodate16:13:48
+11:13:48
+totodate11:13:49
+16:13:49
+totodate11:13:50
+16:13:50
+totodate16:13:51
+11:13:51
+datetoto16:13:52
+11:13:52
+totodate16:13:53
+11:13:53
+totodate16:13:54
+11:13:54
+datetoto16:13:55
+11:13:55
+datetoto16:13:56
+11:13:56
+datetoto16:13:57
+11:13:57
+datetoto16:13:58
+11:13:58
+datetoto16:14:00
+11:14:00
+totodate16:14:01
+11:14:01
+totodate16:14:02
+11:14:02
+totodate16:14:03
+11:14:03
+datetoto16:14:04
+11:14:04
+totodate16:14:05
+11:14:05
+datetoto16:14:06
+11:14:06
+datetoto16:14:07
+11:14:07
+datetoto16:14:08
+11:14:08
+datetoto16:14:09
+11:14:09
+datetoto16:14:10
+11:14:10
+totodate11:14:11
+16:14:11
+totodate11:14:12
+16:14:12
+totodate16:14:13
+11:14:13
+totodate11:14:14
+16:14:14
+totodate16:14:15
+11:14:15
+totodate16:14:16
+11:14:16
+kill 1227
+date16:14:17
+toto11:14:17
+date16:14:18
+toto11:14:18
+datetoto16:14:19
+11:14:19
+datetoto16:14:20
+11:14:20
+datetoto16:14:21
+11:14:21
+datetoto16:14:22
+11:14:22
+datetoto16:14:23
+11:14:23
+datetoto16:14:24
+11:14:24
+datetoto16:14:25
+11:14:25                          kill 1227
+kill 1228
+totodate16:14:26
+11:14:26
+totodate16:14:27
+kill 1228
+kill 1228
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+```
