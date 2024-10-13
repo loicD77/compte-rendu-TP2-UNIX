@@ -621,7 +621,7 @@ root@LAPTOP-E9LS6Q7M:/mnt/c/Windows/System32#
 
 
 
-3. J'ai utilisé **sudo apt update** 
+3. J'ai utilisé ** 
 
 ```bash 
 root@LAPTOP-E9LS6Q7M:/mnt/c/Windows/System32# sudo apt update
@@ -2020,7 +2020,96 @@ COMMAND LINE OPTIONS
 
 
 
-![htop_couleur](./img/htop_couleur.png "htop_couleur")
+![Choix de las langue](./img/choix-langue.png "Choix de la langues")
+
+* changer la colonne de trie.:
+
+
+* J'utilise **Shift + <** pour trier en ordre décroissant par la colonne sur laquelle je suis  actuellement
+
+
+```bash
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+    312 root      20   0 1164208  88660  29820 S   0.0   1.1   0:08.90 python3.10
+  23417 root      20   0 2280528  40128  17672 S   0.0   0.5   0:01.37 snapd
+  23175 postgres  20   0  215764  30188  27436 S   0.0   0.4   0:00.16 postgres
+    273 root      20   0  107228  21464  13208 S   0.0   0.3   0:00.18 unattended-upgr
+  11345 root      20   0  293008  20196  17280 S   0.0   0.3   0:00.10 packagekitd
+    169 root      20   0   30104  19080  10300 S   0.0   0.2   0:00.31 networkd-dispat
+    115 root      20   0  377284  15400    196 S   0.0   0.2   0:02.31 snapfuse
+      1 root      20   0  167236  12776   8352 S   0.0   0.2   0:49.57 systemd
+    124 systemd+  20   0   25540  12640   8444 S   0.0   0.2   0:00.53 systemd-resolve
+     45 root      19  -1   31348  12416  11364 S   0.0   0.2   0:00.59 systemd-journal
+  23179 postgres  20   0  215764  11756   8980 S   0.0   0.2   0:00.04 postgres
+     87 root      20   0  377284  11548    212 S   0.0   0.1   0:01.44 snapfuse
+    106 root      20   0  302520   9884    312 S   0.0   0.1   0:00.52 snapfuse
+  23177 postgres  20   0  215876   9860   7060 S   0.0   0.1   0:00.00 postgres
+  23180 postgres  20   0  216332   9780   6728 S   0.0   0.1   0:00.03 postgres
+    472 root      20   0   17032   9268   7692 S   0.0   0.1   0:00.17 systemd
+    303 root      20   0   15432   8824   7248 S   0.0   0.1   0:00.02 sshd
+  11350 root      20   0  234504   8632   5960 S   0.0   0.1   0:00.02 polkitd
+  23182 postgres  20   0  216192   7744   4804 S   0.0   0.1   0:00.00 postgres
+    198 root      20   0   15340   7428   6472 S   0.0   0.1   0:00.68 systemd-logind
+  23178 postgres  20   0  215764   7024   4272 S   0.0   0.1   0:00.06 postgres
+  23181 postgres  20   0   70356   6592   3840 S   0.0   0.1   0:00.02 postgres
+     68 root      20   0   21968   5852   4488 S   0.0   0.1   0:00.91 systemd-udevd                                    
+```
+
+
+
+* J'utilise **Shift + >** pour trier en ordre croissant par la colonne sur laquelle je suis  actuellement.
+
+
+```bash
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+      477 root      20   0  103316   3436     12 S   0.0   0.0   0:00.00 (sd-pam)
+    419 root      20   0    2616    120      0 S   0.0   0.0   0:00.41 Relay(420)
+    418 root      20   0    2616    120      0 S   0.0   0.0   0:00.00 SessionLeader
+    281 root      20   0    3240   1056    972 S   0.0   0.0   0:00.00 agetty
+    296 root      20   0    3196   1084   1000 S   0.0   0.0   0:00.00 agetty
+    420 root      20   0    6080   4948   3256 S   0.0   0.1   0:00.14 bash
+    494 root      20   0    6124   4788   3252 S   0.0   0.1   0:00.02 bash
+    141 root      20   0    4408   2732   2468 S   0.0   0.0   0:00.03 cron
+    147 message+  20   0    8740   4840   3984 S   0.0   0.1   0:01.12 dbus-daemon
+      6 root      20   0    2616    132    132 S   0.0   0.0   0:00.01 init
+      2 root      20   0    2616   1440   1320 S   0.0   0.0   0:00.06 init-systemd(Ub
+    421 root      20   0    7476   4920   4012 S   0.0   0.1   0:00.02 login
+    169 root      20   0   30104  19080  10300 S   0.0   0.2   0:00.31 networkd-dispat
+  11345 root      20   0  293008  20196  17280 S   0.0   0.3   0:00.11 packagekitd
+  11350 root      20   0  234504   8632   5960 S   0.0   0.1   0:00.02 polkitd
+  23175 postgres  20   0  215764  30188  27436 S   0.0   0.4   0:00.17 postgres
+  23177 postgres  20   0  215876   9860   7060 S   0.0   0.1   0:00.00 postgres
+  23178 postgres  20   0  215764   7024   4272 S   0.0   0.1   0:00.07 postgres
+  23179 postgres  20   0  215764  11756   8980 S   0.0   0.2   0:00.05 postgres
+  23180 postgres  20   0  216332   9780   6728 S   0.0   0.1   0:00.03 postgres
+  23181 postgres  20   0   70356   6592   3840 S   0.0   0.1   0:00.02 postgres
+  23182 postgres  20   0  216192   7744   4804 S   0.0   0.1   0:00.00 postgres
+    312 root      20   0 1164208  88660  29820 S   0.0   1.1   0:08.90 python3.10                                                                     
+```
+
+*  passer l’affichage en couleur: (Dans **top** j'ai appuyé sur **z minuscule**, c'est maintenant en rouge):
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
