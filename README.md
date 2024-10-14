@@ -3435,9 +3435,7 @@ root@LAPTOP-E9LS6Q7M:~/scriptTP2#
 Selon Wikipédia ( https://fr.wikipedia.org/wiki/Cron#:~:text=cron%20est%20un%20programme%20qui,cycle%20d%C3%A9fini%20%C3%A0%20l'avance.), cron est un programme qui permet aux utilisateurs des systèmes Unix d’exécuter automatiquement des scripts, des commandes ou des logiciels à une date et une heure spécifiée à l’avance, ou selon un cycle défini à l’avance.
 
 
-## Que fait la commande tail -f ? A l’aide de cette commande, placer en bas de votre ´ecran
-un fenˆetre qui permette de visualiser en “temps r´eel” le contenu du fichier /var/log/messages.
-Que voyez-vous si vous red´emarrez le service cron depuis un autre shell ?
+## Que fait la commande tail -f ? A l’aide de cette commande, placer en bas de votre écran une fenêtre qui permette de visualiser en “temps réel” le contenu du fichier /var/log/messages. Que voyez-vous si vous redémarrez le service cron depuis un autre shell ?
 
 
 * La commande tail -f affiche en continu les dernières lignes d'un fichier à mesure qu'il est mis à jour. Elle est couramment utilisée pour suivre les fichiers de log en temps réel.
