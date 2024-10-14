@@ -2970,7 +2970,7 @@ kill 1228
     * Le PID (Process ID) du démon rsyslog est 236 d'après mes résultats
 
 
-### Le principal fichier de configuration de rsyslog est /etc/rsyslog.conf. Dans quel fichier rsyslog ´ecrit-il les messages issus des services standards ? Et la plupart des autres messages ? V´erifier le contenu de ces fichier   
+### Le principal fichier de configuration de rsyslog est /etc/rsyslog.conf. Dans quel fichier rsyslog écrit-il les messages issus des services standards ? Et la plupart des autres messages ? Vérifier le contenu de ces fichier   
 
 
 * Pour répondre à cette question j'ai utlisé les commandes suivantes :
