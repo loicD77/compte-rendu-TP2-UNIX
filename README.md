@@ -26,7 +26,7 @@ DARRAS Loïc L3 PRO PROJET WEB ET MOBILE
       - [2.1.3 Commande `pstree`](#213-commande-pstree)
       - [2.1.4 Utilisation de la commande `top` et `htop`](#214-utilisation-de-la-commande-top-et-htop)
 3. [Arrêt d'un processus](#iii-arrêt-dun-processus)
-4. [Les tubes](#iv-les-tubes)
+[Les tubes](#iv-les-tubes)
 5. [Journal système rsyslog](#v-journal-système-rsyslog)
    
 
