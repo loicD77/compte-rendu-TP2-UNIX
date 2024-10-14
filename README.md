@@ -3473,7 +3473,7 @@ root@LAPTOP-E9LS6Q7M:~/scriptTP2#
 
 
 
-## - Expliquer `a quoi sert le fichier /etc/logrotate.conf.
+## - Expliquer à quoi sert le fichier /etc/logrotate.conf.
 
 * Selon https://doc.ubuntu-fr.org/logrotate,  Logrotate permet de limiter la taille des fichiers journaux présents dans /var/log.
 
