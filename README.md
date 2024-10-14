@@ -583,7 +583,7 @@ Utilisation du CPU : 0.3%
 Mémoire utilisée : 71 104 Ko
 ```
 
-* Le premier processus lancée après le déemarrage du système :
+* Le premier processus lancée après le démarrage du système :
 
 
 
