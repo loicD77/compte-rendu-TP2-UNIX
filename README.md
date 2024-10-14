@@ -2956,7 +2956,7 @@ kill 1228
 
 5. Journal système rsyslog
 
-## Le service rsyslog est-il lanc´e sur votre système ? Quel est le PID du démon ?
+## Le service rsyslog est-il lancée sur votre système ? Quel est le PID du démon ?
 
 * J'ai utilisé la commande **systemctl status rsyslog**
 
