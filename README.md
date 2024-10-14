@@ -6,9 +6,9 @@ DARRAS Loïc L3 PRO PROJET WEB ET MOBILE
 
 
 * Ici ce deuxième tp UNIX concene les services et les processus signaux.
-* J'ai tout d'abord effectué une connexion ssh root, une authentification par clef (une génération de clefs, une connexion serveur, depuis la machine hôte) avec des explications sur la cybersécurié avec les attaques de type brute-force ssh et des méthodes pour lutter contre ceci
+* J'ai tout d'abord effectué une connexion ssh root, une authentification par clef (une génération de clefs, une connexion serveur, depuis la machine hôte) avec des explications sur la cybersécurié avec les attaques de type brute-force ssh et des méthodes pour lutter contre ceci.
 * Puis je me suis concentré sur les processus, sur l'arrêt de ces processus et enfin les tubes et le journal système rsyslog.
-* Ce compte rendu est le résultat de la fusion des données issues de ma machine en cours et de ma machine personnelle
+* Ce compte rendu est le résultat de la fusion des données issues de ma machine en cours et de ma machine personnelle.
 
 ## Table des Matières
 
