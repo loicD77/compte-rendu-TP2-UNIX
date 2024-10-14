@@ -3484,7 +3484,7 @@ root@LAPTOP-E9LS6Q7M:~/scriptTP2#
 
 
 
-##  Examiner la sortie de la commande dmesg. Quel modèle de processeur linux d´etecte-il sur votre machine ? Quels mod`eles de cartes réeseaux détecte-il ?
+##  Examiner la sortie de la commande dmesg. Quel modèle de processeur linux détecte-il sur votre machine ? Quels modèles de cartes réeseaux détecte-il ?
 
 
 ```bash
