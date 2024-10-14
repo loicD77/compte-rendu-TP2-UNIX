@@ -2806,7 +2806,7 @@ root@LAPTOP-E9LS6Q7M:~/scriptTP2#
 ```
 
 
-* Voici comment arreter les 2 horloges avec ps et kill :
+* Voici comment arrêter les 2 horloges avec ps et kill :
 
 ```bash
 [2]+  Terminated              sh date-toto.sh
