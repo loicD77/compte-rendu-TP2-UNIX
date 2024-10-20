@@ -1,7 +1,7 @@
 # [ LP LPW 2024 ] compte rendu TP2 UNIX :
 DARRAS Loïc L3 PRO PROJET WEB ET MOBILE
 
-![pingouin-ssh](./img/pingouin-linux-shell.png "pingouin-linux-shell")
+![pingouin-ssh](./img/pingouin-ssh.png "pingouin-ssh")
 # Présentation/Introduction du travail (avant la table des matières et les explications)
 
 
